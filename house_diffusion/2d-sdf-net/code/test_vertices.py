@@ -2,7 +2,7 @@ import cv2
 import numpy as np
 
 # Read the image
-img_path = '../shapes/raw_images/quarter_circle.png'
+img_path = '../shapes/raw_images/circ_rect.png'
 image = cv2.imread(img_path)
 out_path = '../shapes/raw/'
 width, height, channels = image.shape
@@ -39,7 +39,7 @@ cv2.imshow('Result', image)
 cv2.waitKey(0)
 cv2.destroyAllWindows()
 
-f = open(f'{out_path}/quarter_circle', 'w')
+f = open(f'{out_path}/circ_rect_without_ed', 'w')
 for point in pts:
     # Normalize (x,y) to (0,1)
     x = (np.double(point[0]) / width) 

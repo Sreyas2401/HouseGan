@@ -20,7 +20,7 @@ LOG_PATH = '../logs/'
 
 if __name__ == '__main__':
     batch_size = 64
-    learning_rate = 1e-5 # Play around ------> :)
+    learning_rate = 1e-4 # Play around ------> :)
     epochs = 100
     regularization = 0  # Default: 1e-2
     delta = 0.1  # Truncated distance
@@ -65,7 +65,7 @@ if __name__ == '__main__':
             loss = loss_fn(torch.clamp(pred_sdf, min=-delta, max=delta), torch.clamp(sdf, min=-delta, max=delta))
 
             # Once epoch reaches 1000 and 1200, considering 1200 is the maxepoch, render the image.
-            if t > 100:    # Changed this to > 1000 instead of > 500 epochs :)
+            if t > 10:    # Changed this to > 1000 instead of > 500 epochs :)
                 start_hess_track = True
                 predicted_gradient, pred_hess_matrix = getGradientAndHessian(pred_sdf, xy, matrixsize=2)
                 hessloss = implicit_loss_2d(predicted_gradient, pred_hess_matrix, device)
@@ -109,7 +109,7 @@ if __name__ == '__main__':
         if(start_hess_track):
             total_hess_loss += val_loss
 
-        if t==1000:             # If t == 1000 epochs then it renders image without hess loss function :)
+        if t==800:             # If t == 1000 epochs then it renders image without hess loss function :)
             print('Total loss contributed without hessian loss : ', total_loss)
             print('Rendering image without applying hessian loss')
             plot_sdf(model, device, res_path=RES_PATH, name=name, mask_path=MASK_PATH, is_net=True, show=True)

@@ -115,6 +115,8 @@ class ShapeSampler(object):
         # Transform to Cartesian coordinate
         uniform_points = np.concatenate((r * np.cos(t), r * np.sin(t)), axis=1)
 
+
+        # CHANGE THIS ------>> CANNY EDGE
         # Do Gaussian sampling
         # Distribute points to each edge weighted by length
         total_length = 0
@@ -126,7 +128,8 @@ class ShapeSampler(object):
         edge_portion = edge_length / total_length
         edge_portion *= m
         edge_num = np.around(edge_portion).astype(int)
-
+        
+        
         # Do sampling on edges
         direction = (self.shape.v[1] - self.shape.v[0])
         d = np.random.uniform(0, 1, size=(edge_num[0], 1))
@@ -135,6 +138,8 @@ class ShapeSampler(object):
             direction = (self.shape.v[(i + 1) % self.shape.num] - self.shape.v[i])
             d = np.random.uniform(0, 1, size=(edge_num[i], 1))
             boundary_points = np.concatenate((boundary_points, self.shape.v[i] + d * direction), axis=0)
+
+        # Randomly assign directions to these points ------> :)
 
         # Perturbing boundary points
         noise_1 = np.random.normal(loc=0, scale=np.sqrt(var[0]), size=boundary_points.shape)
