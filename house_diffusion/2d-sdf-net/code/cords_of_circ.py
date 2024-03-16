@@ -2,7 +2,7 @@ import cv2
 import numpy as np
 import matplotlib.pyplot as plt
 
-img_path = '../shapes/raw_images/quarter_circle.png'
+img_path = '../shapes/raw_images/circle.png'
 
 out_path = '../shapes/raw/'
 
@@ -18,7 +18,7 @@ contours, _ = cv2.findContours(thresh, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPL
 
 contour_image = np.zeros_like(image)
 
-with open(f'{out_path}/quarter_circ.txt', 'w') as f:
+with open(f'{out_path}/circle.txt', 'w') as f:
     if len(contours) > 0:
         for contour in contours:
             for point in contour:

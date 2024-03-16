@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 # Read the x, y coordinates from your file
 x = []
 y = []
-with open('../shapes/raw/quarter_circ.txt', 'r') as file:
+with open('../shapes/raw/circle.txt', 'r') as file:
     for line in file:
         coords = line.split()
         x.append(float(coords[0]))
