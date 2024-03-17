@@ -2,7 +2,7 @@ import cv2
 import numpy as np
 import matplotlib.pyplot as plt
 
-img_path = '../shapes/raw_images/circle.png'
+img_path = '../shapes/raw_images/hand_drawn.png'
 
 out_path = '../shapes/raw/'
 
