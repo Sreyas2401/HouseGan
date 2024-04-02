@@ -62,9 +62,6 @@ def implicit_loss_2d(gradient, hessian_matrix, device, matrixsize=2, index=None)
 
     U,SVD,V = torch.linalg.svd(hessian_matrix)
     hess_regularizer = 1e7 * SVD[:,1:].mean() # Increase to high value ------>
-    print(SVD)
-    print(hessian_matrix)
-    print("hess_regularizer" + str(hess_regularizer))
     return hess_regularizer
     
 def implicit_loss(gradient, hessian_matrix, args, device, matrixsize=3, index=None):
