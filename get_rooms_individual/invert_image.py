@@ -29,7 +29,7 @@ def convert_colors(input_image_path, output_image_path):
     cv2.imwrite(output_image_path, gray_img)
 
 if __name__ == "__main__":
-    input_path = "../dataset/floorplan_dataset/0.png"
-    output_path = "./output_YAY/0.png"
+    input_path = "0.png"
+    output_path = "./output_Inverted/3.png"
 
     convert_colors(input_path, output_path)

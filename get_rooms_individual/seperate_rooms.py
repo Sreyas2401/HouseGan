@@ -72,11 +72,11 @@ def find_rooms(img, noise_removal_threshold=25, corners_threshold=0.1,
 
 
 #Read gray image
-img = cv2.imread("./output_Inverted/1.png", 0)
+img = cv2.imread("./output_Inverted/2.png", 0)
 rooms, colored_house = find_rooms(img.copy())
 cv2.imwrite("./output_Color/1_1.png", colored_house)
 
-output_folder = './output_Seperated/1_room_imgs'
+output_folder = './output_Seperated/2_room_imgs'
 os.makedirs(output_folder, exist_ok=True)
 
 # Iterate over each room and save it
