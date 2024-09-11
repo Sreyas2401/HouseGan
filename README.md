@@ -1,33 +1,30 @@
 # Developable Surfaces
 
-This repository consists my research on generating developable surfaces for converting 2D floorplans to 3D. It includes 2 parts :
-
-1. Room Extraction
-2. 2D-SDF-Net
+This repository contains my research and codebase for converting 2D architectural floorplans into 3D models using developable surface techniques. The project focuses on two main components: room extraction and 2D-SDF-Net, a neural network designed to approximate signed distance functions (SDFs) of 2D polygons. The extracted rooms are processed and converted into 3D developable surfaces, making the transformation of floorplans more geometrically accurate.
 
 ## Room Extraction (Data Preprocessing)
 
-I've used OpenCV to invert floorplans color from rplan dataset and then used contours to extract individual rooms.
+The first step in converting a 2D floorplan into a 3D model is identifying individual rooms. I've use OpenCV to invert the colors of floorplans from the rplan dataset and extract contours to identify and isolate the rooms for further processing.
 
-To run this section, run the following steps in the workspace:
+### Steps to run Room Extraction:
 
-1. pip install -r requirements.txt (this is recommended to be done in a virtual environment)
-2. python invert_image.py
-3. python seperate_rooms.py
+1. ```pip install -r requirements.txt``` (this is recommended to be done in a virtual environment)
+2. ```python invert_image.py```
+3. ```python seperate_rooms.py```
 
 ## 2D-SDF-Net
 
-2D-SDF-Net is a neural network approximating the two-dimensional signed distance functions of polygons.
-The network structure references DeepSDF: <https://github.com/facebookresearch/DeepSDF>.
+2D-SDF-Net is a neural network designed to approximate the 2D signed distance functions of polygons in the extracted rooms.
+The network structure references DeepSDF: <https://github.com/facebookresearch/DeepSDF> and mintpancake's neural network.
 
-I've applied hessian loss as an additional loss function to L1 loss function and optimized the model to be trained on floorplans with circular boundaries to make the surface developable.
+By applying a combination of L1 loss and Hessian loss, the network is optimized to handle floorplans with circular boundaries, ensuring the generated 3D surfaces are developable.
 
-2D-SDF-Net is trained on the extracted rooms from Room-Extraction directory to generate Signed Distance Fields for developing the surface from 2D to 3D.
+The SDF output represents the distance from any point in the 2D space to the nearest boundary, which is crucial for developing the floorplan into a smooth 3D surface.
 
-To run this section, run the following steps in the workspace:
+### Steps to run 2D-SDF-Net:
 
-1. pip install -r requirements.txt (this is also recommended to be run in the same virtual environment)
-2. python drawer.py
-3. python sampler.py
-4. python trainer.py
-5. python renderer.py
+1. ```pip install -r requirements.txt``` (this is also recommended to be run in the same virtual environment)
+2. ```python drawer.py```
+3. ```python sampler.py```
+4. ```python trainer.py```
+5. ```python renderer.py```
